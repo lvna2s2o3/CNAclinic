@@ -154,7 +154,7 @@
 processForSegmentation = function(
     bamfiles=NULL, bamnames=NULL, refSamples=NULL, pathToBams=NULL,
     ext="bam",
-    binSize=NULL, genome="hg19", outputType="CNAclinicData",
+    binSize=NULL, genome="hg38", outputType="CNAclinicData",
     typeOfPreMadeBins="SR50",
     userMadeBins=NULL,
     cache=getOption("QDNAseq::cache", FALSE),
@@ -225,14 +225,14 @@ processForSegmentation = function(
     }
 
     if(!is.null(userMadeBins)){
-        if(!((genome %in% "hg19") &
+        if(!((genome %in% "hg38") &
              (binSize %in% c(1, 5, 10, 15, 30, 50, 100, 500, 1000)))){
             errorMsg <- "There are no pre-created annotations for the specified"
-            if(genome != "hg19")
+            if(genome != "hg38")
                 errorMsg <- paste(errorMsg, "genome build;")
             if(!(binSize %in% c(1, 5, 10, 15, 30, 50, 100, 500, 1000)))
                 errorMsg <- paste(errorMsg, "bin size. Available bin sizes are:
-                                  hg19: 1, 5, 10, 15, 30, 50, 100, 500, 1000 Kbp.\n")
+                                  hg38: 1, 5, 10, 15, 30, 50, 100, 500, 1000 Kbp.\n")
 
             stop(paste(errorMsg,
                        "CNAclinic does not generate the required annotation as this is
@@ -243,7 +243,7 @@ processForSegmentation = function(
         }else{
 
             if(is.null(binSize)){
-                errorMsg <- "Default genome: hg19, please specify binSize argument"
+                errorMsg <- "Default genome: hg38, please specify binSize argument"
                 stop(errorMsg)
             }
         }
