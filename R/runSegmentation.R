@@ -98,9 +98,9 @@ runSegmentation=function(x,
 
     if(is.null(genome))
         stop("Please provide genome build used to map sequencing data.")
-    if(!(genome %in% c("hg19", "hg18", "hg17", "hg16")) &
+    if(!(genome %in% c("hg38","hg19", "hg18", "hg17", "hg16")) &
        ("PLS" %in% segmentType)){
-        stop(paste("The PLS algorithm only runs on hg19, hg18, hg17 & hg16.",
+        stop(paste("The PLS algorithm only runs on hg38,hg19, hg18, hg17 & hg16.",
         "Remove PLS from segmentType and re-run.", sep="\n"))
 
     }
