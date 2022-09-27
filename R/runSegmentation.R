@@ -677,7 +677,8 @@ runSegmentation=function(x,
             ranges=IRanges::IRanges(start=x$start, width=(x$end - x$start) + 1),
             seqnames=x$chromosome,
             copy=copyNumber[ , sampleNames[i]])
-
+        sampleRangedData <- as.data.frame(sampleRangedData)
+        colnames(sampleRangedData)[1] <- "chr"
         sampleHMMData = suppressMessages(HMMcopy::HMMsegment(sampleRangedData, verbose = TRUE))
 
         hmmSegsCalls[ ,((i*2)-1):(i*2)] <- .splitCollatedSegs(
