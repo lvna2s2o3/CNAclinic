@@ -673,9 +673,9 @@ runSegmentation=function(x,
 
     for(i in 1:length(sampleNames)){
         message(sampleNames[i])
-        sampleRangedData <- IRanges::RangedData(
+        sampleRangedData <- GRanges(
             ranges=IRanges::IRanges(start=x$start, width=(x$end - x$start) + 1),
-            space=x$chromosome,
+            seqnames=x$chromosome,
             copy=copyNumber[ , sampleNames[i]])
 
         sampleHMMData = suppressMessages(HMMcopy::HMMsegment(sampleRangedData, verbose = TRUE))
